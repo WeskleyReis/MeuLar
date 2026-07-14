@@ -1,0 +1,6 @@
+@MeuLar.API_HostAddress = http://localhost:5167
+
+GET {{MeuLar.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
