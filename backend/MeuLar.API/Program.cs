@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MeuLar.API.Data;
 using MeuLar.API.Features.Pessoas.Services;
 using MeuLar.API.Features.Transacoes.Services;
+using MeuLar.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
