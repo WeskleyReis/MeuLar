@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MeuLar.API.Data;
 using MeuLar.API.Features.Pessoas.Services;
+using MeuLar.API.Features.Transacoes.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<MeuLarDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IPessoaService, PessoaService>();
+builder.Services.AddScoped<ITransacaoService, TransacaoService>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
