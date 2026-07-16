@@ -9,29 +9,28 @@ export function NavBar() {
       className="
         w-fit px-6 py-12
         flex flex-col justify-between items-center
-        border-r-2 border-black/10
+        border-r border-neutral-400
       "
     >
       <div className="flex flex-col gap-12">
         <div className="flex items-center gap-4">
           <HouseHeart
             size={48}
-            className="text-violet-700 shrink-0"
+            className="text-indigo-700 shrink-0"
           />
           <div>
             <p
               className="
                 text-2xl font-bold
-                text-violet-700
+                text-indigo-700
               "
             >
               MeuLar
             </p>
             <p
               className="
-                text-base font-bold
+                text-base font-bold text-neutral-500
                 whitespace-nowrap
-                text-neutral-500
               "
             >
               Controle de Gastos

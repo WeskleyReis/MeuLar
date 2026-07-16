@@ -7,6 +7,18 @@ using MeuLar.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var nomeDaPolitica = "MinhaPoliticaCors";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: nomeDaPolitica,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 // Controllers
 builder.Services.AddControllers();
 
@@ -34,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseCors(nomeDaPolitica);
 
 app.MapControllers();
 

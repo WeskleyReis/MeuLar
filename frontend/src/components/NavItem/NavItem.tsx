@@ -18,7 +18,7 @@ export function NavItem({
       className={({isActive}) =>
       `
         p-4 flex gap-4 rounded-xl
-        ${ isActive ? "text-violet-700 bg-violet-100" : ""}
+        ${ isActive ? "text-indigo-700 bg-indigo-700/20" : "text-black dark:text-white"}
       `
       }
     >
