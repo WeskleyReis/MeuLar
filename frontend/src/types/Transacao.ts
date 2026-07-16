@@ -1,8 +1,8 @@
 export interface Transacao {
-  id: string,
-  descricao: string,
-  valor: number,
-  tipo: number,
-  pessoaId: string,
-  nomePessoa: string,
+  id: string
+  descricao: string
+  valor: number
+  tipo: number
+  pessoaId: string
+  nomePessoa: string
 }
