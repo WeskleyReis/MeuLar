@@ -3,6 +3,7 @@ import { NavBar } from "../../components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import { novaPessoa, listarPessoas, deletarPessoa } from "../../api/pessoas";
 import type { Pessoa } from "../../types/Pessoa";
+import { Table, TableHeader, TableRow, TableCell } from "../../components/Table";
 
 export function Pessoas() {
   const [ pessoas, setPessoas ] = useState<Pessoa[]>([])
@@ -84,7 +85,7 @@ export function Pessoas() {
             className="
               p-6 border border-neutral-400 rounded-xl
               dark:bg-neutral-800
-              flex-1 flex flex-col gap-12
+              flex flex-col gap-12
             "
           >
               <div className="flex flex-col gap-2">
@@ -152,61 +153,60 @@ export function Pessoas() {
               Cadastrar
             </button>
           </div>
-          <div
-            className="
-                flex-2 h-fit
-                border border-neutral-400 rounded-xl
-                dark:bg-neutral-800 dark:text-white
-                flex flex-col
-            "
-          >
-            <div
-              className="
-                px-6 h-16 bg-neutral-300 rounded-t-xl border-neutral-400
-                dark:bg-neutral-500
-                grid grid-cols-[2fr_1fr_1fr] items-center
-              "
-            >
-              <p className="font-bold">Nome</p>
-              <p className="font-bold">Idade</p>
-              <div></div>
-            </div>
+          <Table>
+            <TableHeader
+              template="2fr 1fr 1fr"
+              columns={[
+                "Nome",
+                "Idade",
+                ""
+              ]}
+            />
             {pessoas.map((pessoa) => (
-              <div
+              <TableRow
                 key={pessoa.id}
-                className="
-                  px-6 h-16
-                  grid grid-cols-[2fr_1fr_1fr] items-center
-                  border-b border-neutral-200
-                  last:border-b-0
-                "
+                template="2fr 1fr 1fr"
               >
-                <p className="">{pessoa.nome}</p>
-                <div className="flex items-center gap-6">
-                  <p className="flex-1">{pessoa.idade}</p>
-                  {pessoa.idade < 18 && (
-                    <span
-                      className="
-                        text-[10px] px-4 py-1 rounded-xl
-                        text-white font-bold bg-orange-500
-                      "
-                    >
-                      MENOR DE IDADE
+                <TableCell>
+                  {pessoa.nome}
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-4">
+                    <span>{pessoa.idade}</span>
+                    {pessoa.idade < 18 && (
+                      <span
+                        className="
+                          text-[10px]
+                          px-3 py-1
+                          rounded-full
+                          bg-orange-500
+                          text-white
+                          font-bold
+                        "
+                      >
+                        MENOR DE IDADE
+                      </span>
+                    )}
+                  </div>
+                </TableCell>
+                <TableCell className="justify-self-end">
+                  <button
+                    onClick={() => handleExcluir(pessoa.id)}
+                    className="
+                      flex items-center
+                      gap-2
+                      cursor-pointer
+                    "
+                  >
+                    <Trash size={14} />
+                    <span className="font-bold">
+                      Excluir
                     </span>
-                  )}
-                </div>
-                <button
-                  onClick={() => handleExcluir(pessoa.id)}
-                  className="
-                    justify-self-end flex gap-2 items-center cursor-pointer
-                  "
-                >
-                  <Trash size={12} />
-                  <p className="font-bold">Excluir</p>
-                </button>
-              </div>
+                  </button>
+                </TableCell>
+              </TableRow>
             ))}
-          </div>
+          </Table>
         </div>
       </section>
     </main>
