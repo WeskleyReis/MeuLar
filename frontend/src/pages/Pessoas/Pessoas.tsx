@@ -1,9 +1,12 @@
-import { ChevronsUpDown, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import { novaPessoa, listarPessoas, deletarPessoa } from "../../api/pessoas";
 import type { Pessoa } from "../../types/Pessoa";
 import { Table, TableHeader, TableRow, TableCell } from "../../components/Table";
+import { Title } from "../../components/Tittle/Title";
+import { Input } from "../../components/Input/Input";
+import { Select } from "../../components/Select/Select";
 
 export function Pessoas() {
   const [ pessoas, setPessoas ] = useState<Pessoa[]>([])
@@ -72,14 +75,7 @@ export function Pessoas() {
     >
       <NavBar />
       <section className="w-full p-12 flex flex-col gap-12">
-        <div className="flex flex-col gap-2">
-          <p className="text-4xl font-bold dark:text-white">
-            Pessoas
-          </p>
-          <p className="text-base text-neutral-500">
-            Gerencie as pessoas cadastradas
-          </p>
-        </div>
+        <Title title="Pessoas" desc="Gerencie as pessoas cadastradas" />
         <div className="flex gap-6">
           <div
             className="
@@ -95,53 +91,28 @@ export function Pessoas() {
                 </p>
               </div>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-4">
-                <p className="text-base font-bold dark:text-white">
-                  Nome <span className="text-red-500">*</span>
-                </p>
-                <input
-                  type="text"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
-                  placeholder="Digite o nome completo"
-                  className="
-                    w-full p-4
-                    placeholder:text-black dark:placeholder:text-neutral-500
-                    border border-neutral-400 rounded-xl outline-0
-                  "
-                />
-              </div>
-              <div className="flex flex-col gap-4 relative">
-                <p className="text-base font-bold dark:text-white">
-                  Idade <span className="text-red-500">*</span>
-                </p>
-                <select
-                  value={idade}
-                  onChange={(e) => setIdade(e.target.value)}
-                  className="
-                    w-full p-4
-                    border border-neutral-400 rounded-xl outline-0
-                    text-black dark:text-neutral-500
-                    appearance-none outline-none cursor-pointer
-                  "
-                >
-                  <option value="" disabled>Selecione a idade</option>
+              <Input
+                label="Nome"
+                required
+                placeholder="Digite o nome completo"
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+              <Select
+                label="Idade"
+                required
+                value={idade}
+                onChange={(e) => setIdade(e.target.value)}
+              >
+                <option value="" disabled>Selecione a idade</option>
 
                   {Array.from({ length: 120}, (_, index) => (
                     <option key={index + 1} value={index + 1}>
                       {index + 1}
                     </option>
                   ))}
-                </select>
-                  <ChevronsUpDown
-                    size={20}
-                    className="
-                      absolute
-                      right-4 top-15
-                      text-neutral-500
-                    "
-                  />
-              </div>
+              </Select>
             </div>
             <button
               onClick={handleCadastrar}

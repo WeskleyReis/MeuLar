@@ -47,13 +47,15 @@ public class TransacaoService : ITransacaoService
             Descricao = transacao.Descricao,
             Valor = transacao.Valor,
             Tipo = transacao.Tipo,
-            PessoaId = transacao.PessoaId
+            PessoaId = transacao.PessoaId,
+            NomePessoa = pessoa.Nome
         };
     }
 
     public async Task<IEnumerable<TransacaoResponse>> GetAllAsync()
     {
         var transacao = await _context.Transacoes
+            .Include(t => t.Pessoa)
             .AsNoTracking()
             .ToListAsync();
 
@@ -63,7 +65,8 @@ public class TransacaoService : ITransacaoService
             Descricao = transacao.Descricao,
             Valor = transacao.Valor,
             Tipo = transacao.Tipo,
-            PessoaId = transacao.PessoaId
+            PessoaId = transacao.PessoaId,
+            NomePessoa = transacao.Pessoa.Nome
         });
     }
 }

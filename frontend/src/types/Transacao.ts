@@ -4,4 +4,5 @@ export interface Transacao {
   valor: number,
   tipo: number,
   pessoaId: string,
+  nomePessoa: string,
 }

@@ -1,5 +1,5 @@
 import { api } from "./api";
-import type { Transacao } from "../types/Tranasacao";
+import type { Transacao } from "../types/Transacao";
 
 export async function listarTransacoes() {
   const { data } = await api.get<Transacao[]>("/transacoes")
