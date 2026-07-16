@@ -45,7 +45,15 @@ export function Pessoas() {
     }
   }
 
-  async function handleExcluir(id: string) {
+  async function handleExcluir(id: string, nome: string) {
+    const confirmar = confirm(`
+      Tem certeza que deseja excluir ${nome}?
+      Esta ação é permanente e não poderá ser desfeita.
+      Ao excluir esta pessoa, todas as transações vinculadas a ela também serão excluídas.
+    `)
+
+    if (!confirmar) return
+
     try {
       await deletarPessoa(id)
 
@@ -162,7 +170,7 @@ export function Pessoas() {
                 </TableCell>
                 <TableCell className="justify-self-end">
                   <button
-                    onClick={() => handleExcluir(pessoa.id)}
+                    onClick={() => handleExcluir(pessoa.id, pessoa.nome)}
                     className="
                       flex items-center
                       gap-2

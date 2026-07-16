@@ -108,12 +108,9 @@ export function Relatorios() {
               </TableCell>
 
               <TableCell
-                className={`font-semibold ${
-                  pessoa.saldo > 0
-                  ? "text-green-600"
-                  : "text-red-500"
-
-                }`}
+                className={`font-semibold
+                  ${pessoa.saldo > 0 ? "text-green-600" : "text-red-500"}
+                `}
               >
                 R$ {pessoa.saldo.toFixed(2)}
               </TableCell>

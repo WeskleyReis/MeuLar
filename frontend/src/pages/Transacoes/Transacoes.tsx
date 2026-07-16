@@ -18,6 +18,10 @@ export function Transacoes() {
   const [ tipo, setTipo ] = useState("")
   const [ pessoaId, setPessoaId ] = useState("")
 
+  const pessoaSelecionada = pessoas.find(
+    (pessoa) => pessoa.id === pessoaId
+  )
+
   async function carregarPessoa() {
     try {
       const data = await listarPessoas()
@@ -122,6 +126,20 @@ export function Transacoes() {
                   </option>
                 ))}
               </Select>
+
+              {pessoaSelecionada && pessoaSelecionada.idade < 18 && (
+                <span
+                  className="
+                    p-2 rounded-xl
+                    bg-orange-200
+                    border border-orange-400
+                    text-orange-700 text-xs
+                    text-center
+                  "
+                >
+                  Esta pessoa é menor de idade e pode cadastrar apenas despesa.
+                </span>
+              )}
 
               <Input
                 label="Descrição"
