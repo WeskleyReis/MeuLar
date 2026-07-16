@@ -89,7 +89,7 @@ export function Pessoas() {
             className="
               p-6 border border-neutral-400 rounded-xl
               dark:bg-neutral-800
-              flex flex-col gap-12
+              flex flex-col gap-9
             "
           >
               <div className="flex flex-col gap-2">
